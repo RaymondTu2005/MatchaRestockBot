@@ -12,12 +12,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/requests")
 public class RestockController {
   private final RestockService restockService;
+
   @Autowired
   public RestockController(RestockService restockService) {
     this.restockService = restockService;
   }
-  @GetMapping
-  public Restock getRestock() {
-    return restockService.getRestock();
+
+  @GetMapping("/ippodo")
+  public void scrapeIppodo() {
+    restockService.scrapeAndDetectIppodo();
+  }
+  @GetMapping("/marukyu")
+  public void scrapeMarukyu() {
+    restockService.scrapeAndDetectMarukyu();
+  }
+  @GetMapping("/sazen")
+  public void scrapeSazen() {
+    restockService.scrapeAndDetectSazen();
   }
 }

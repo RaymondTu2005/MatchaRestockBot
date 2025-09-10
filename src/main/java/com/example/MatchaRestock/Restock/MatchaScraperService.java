@@ -103,7 +103,7 @@ public class MatchaScraperService {
   }
 
   // TODO: Finish this later!
-  public Matcha scrapeMarukyuKoyamaen(String url) {
+  public List<Matcha> scrapeMarukyuKoyamaen(String url) {
     try {
       Document pageData = Jsoup.connect(url).get();
       Element stockStatus = pageData.selectFirst(".stock single-stock-status out-of-stock");
@@ -112,7 +112,6 @@ public class MatchaScraperService {
         return null;
       }
       Element productName = pageData.selectFirst("[itemprop=name");
-
       return null; // Change
 
     } catch (IOException e) {
