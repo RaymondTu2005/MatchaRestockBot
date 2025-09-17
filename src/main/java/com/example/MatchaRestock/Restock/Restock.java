@@ -21,6 +21,8 @@ public class Restock {
   )
   @Column(name = "ID")
   private Long ID;
+  @Column(name = "RESTOCK_BRAND", nullable = false, updatable = true)
+  private String restockBrand;
   @Column(name = "RESTOCK_DATE_AND_TIME", nullable = false, updatable = false)
   private LocalDateTime restockDateAndTime;
   @Column(name = "GRAM_LIMIT", nullable = false, updatable = false)
@@ -35,6 +37,14 @@ public class Restock {
     this.restockDateAndTime = restockDateAndTime;
     this.gramLimit = gramLimit;
     this.matchaList = matchaList;
+  }
+
+  public String getRestockBrand() {
+    return restockBrand;
+  }
+
+  public void setRestockBrand(String restockBrand) {
+    this.restockBrand = restockBrand;
   }
 
   public Restock() {

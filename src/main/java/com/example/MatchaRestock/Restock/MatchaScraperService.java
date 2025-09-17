@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -129,12 +130,18 @@ public class MatchaScraperService {
         List<Matcha> matchaList = new ArrayList<>();
         // Call the MatchaExtractor on the href links in product-list
         Elements productLinks = pageData.select("#product-list .product");
+        Restock restock = new Restock(LocalDateTime.now(), 0, matchaList);
+        // Sazen does not have gram limits
+
+
         for (Element productLink : productLinks) {
           Element link = productLink.selectFirst(".product-name a");
           if (link != null) {
             String href = link.attr("href");
             String passUrl = baseLink + href;
-            matchaList.add(sazenMatchaExtrator(passUrl));
+            Matcha modifyRestock = sazenMatchaExtrator(passUrl);
+            modifyRestock.setRestock(restock); // Map each matcha to a specific restock
+            matchaList.add(modifyRestock);
           }
         }
         return matchaList;

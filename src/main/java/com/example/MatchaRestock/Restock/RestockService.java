@@ -38,7 +38,9 @@ public class RestockService {
     if (matchaList == null || matchaList.isEmpty()) { return; }
     // List not empty, so compare it to the current
     for (Matcha checkingData : List<Matcha> matchaList) {
-      if (restockRepository.existsBy)
+      if (restockRepository.existsRestockByMatchaListContaining(matchaList)) {
+
+      }
     }
   }
 
